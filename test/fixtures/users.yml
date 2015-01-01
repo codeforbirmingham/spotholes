@@ -2,8 +2,10 @@
 
 one:
   name: MyString
-  unique_key: MyString
+  unique_id: 1
+  score: 1
 
 two:
   name: MyString
-  unique_key: MyString
+  unique_id: 1
+  score: 1

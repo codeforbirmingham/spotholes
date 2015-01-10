@@ -1,5 +1,7 @@
-class Api::V1::PotholesController < ApplicationController
+class Api::V1::PotholesController < Api::ApiController
   respond_to :json
+
+  before_action :authenticate, only: [:create]
 
   def index
     if params[:status].blank?
@@ -11,6 +13,14 @@ class Api::V1::PotholesController < ApplicationController
 
   def show
     respond_with Pothole.find(params[:id]), root: false
+  end
+
+  def create
+    @pothole = Pothole.create(pothole_params)
+  end
+
+  def pothole_params
+    params.require(:name).require(:longitude).require(:latitude)
   end
 
 end

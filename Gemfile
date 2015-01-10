@@ -17,8 +17,6 @@ gem 'coffee-rails', '~> 4.1.0'
 #use activeadmin
 gem 'activeadmin', github: 'activeadmin'
 
-gem 'rails-api'
-
 #use activemodel serializer
 gem 'active_model_serializers', '~> 0.9.0'
 #use devise

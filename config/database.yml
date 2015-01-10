@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: potholes_backend_production
-  username: potholes-backend
+  username: justinh
   password: <%= ENV['POTHOLES-BACKEND_DATABASE_PASSWORD'] %>

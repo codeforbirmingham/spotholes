@@ -1,16 +1,12 @@
-module Api
-  module V1
-    class PotholesController < ApplicationController
+class Api::V1::PotholesController < ApplicationController
+  respond_to :json
 
-      respond_to :json
-
-      def index
-        respond_with Pothole.all
-      end
-
-      def show
-        respond_with Pothole.find(params[:id])
-      end
-    end
+  def index
+    respond_with Pothole.all
   end
+
+  def show
+    respond_with Pothole.find(params[:id])
+  end
+
 end

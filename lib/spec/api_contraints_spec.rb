@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'api_constraints'
 
 describe ApiConstraints do
 
@@ -6,9 +7,9 @@ describe ApiConstraints do
 
   describe "matches?" do
     it "returns true when the version matches the 'Accept' header" do
-      request = double(host: 'api.localhost',
+      request = double(host: 'api.potholes.dev',
                        headers: {"Accept" => "application/vnd.potholes.v1"})
-      api_constraints_v1.matches?(request).should be_true
+      expect(api_constraints_v1.matches?(request)).to be true
     end
   end
 end

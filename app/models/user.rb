@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	attr_accessible :name, :unique_id, :score
-	validates :unique_id, :score, :name, presence: true
-	validates :unique_id, uniqueness: true
+	attr_accessible :name, :imei, :score
+	validates :imei, :score, :name, presence: true
+	validates :imei, uniqueness: true
 end

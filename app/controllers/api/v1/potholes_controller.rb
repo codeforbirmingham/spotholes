@@ -17,16 +17,11 @@ class Api::V1::PotholesController < Api::ApiController
   end
 
   def create
-    puts '\n\n\ndebug statement\n\n\n'
     if pothole_params[:name].blank? or pothole_params[:latitude].blank? or pothole_params[:longitude].blank? or pothole_params[:image].blank?
       head status: :bad_request
     else
-      @pothole = Pothole.new(name: pothole_params[:name], latitude: pothole_params[:latitude], longitude: pothole_params[:longitude], image: pothole_params[:image])
-      puts "pothole valid? #{@pothole.valid?}\n\n\n"
-      @pothole.user = @user
+      @pothole = Pothole.new(name: pothole_params[:name], latitude: pothole_params[:latitude], longitude: pothole_params[:longitude], image: pothole_params[:image], status: Pothole.statuses[:unverified], score: 0, user_id: @user.id)
       @pothole.save
-
-      byebug
 
       unless @pothole
         head status: :bad_request

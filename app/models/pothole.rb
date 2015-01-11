@@ -1,5 +1,5 @@
 class Pothole < ActiveRecord::Base
-  attr_accessible :name, :longitude, :latitude, :status, :score, :image, :user
+  attr_accessible :name, :longitude, :latitude, :status, :score, :user, :image
   validates :user, presence: true
   validates :name, :longitude, :latitude, :status, :score, presence: true
   belongs_to :user
@@ -11,9 +11,16 @@ class Pothole < ActiveRecord::Base
                         xhdpi: '80x80#',
                         xxhdpi: '120x120#',
                         xxxhdpi: '160x160#'
+                    },
+                    convert_options: {
+                        mdpi: '-strip',
+                        hdpi: '-strip',
+                        xhdpi: '-strip',
+                        xxhdpi: '-strip',
+                        xxxhdpi: '-strip',
                     }
 
-  validates_attachment :image, content_type: {content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"]}
+  validates_attachment :image, content_type: {content_type: ["image/jpg", "image/jpeg", "image/png"]}, presence: true
 
   enum status: {unverified: 0, verified: 1, tagged: 2, fixed: 3}
 end

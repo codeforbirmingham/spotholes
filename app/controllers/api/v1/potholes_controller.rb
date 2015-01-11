@@ -1,7 +1,8 @@
 class Api::V1::PotholesController < Api::ApiController
   respond_to :json
 
-  before_action :authenticate, only: [:create]
+
+  # before_action :authenticate, only: [:create]
 
   def index
     if params[:status].blank?
@@ -16,11 +17,28 @@ class Api::V1::PotholesController < Api::ApiController
   end
 
   def create
-    @pothole = Pothole.create(pothole_params)
+    puts '\n\n\ndebug statement\n\n\n'
+    if pothole_params[:name].blank? or pothole_params[:latitude].blank? or pothole_params[:longitude].blank? or pothole_params[:image].blank?
+      head status: :bad_request
+    else
+      @pothole = Pothole.new(name: pothole_params[:name], latitude: pothole_params[:latitude], longitude: pothole_params[:longitude], image: pothole_params[:image])
+      puts "pothole valid? #{@pothole.valid?}\n\n\n"
+      @pothole.user = @user
+      @pothole.save
+
+      byebug
+
+      unless @pothole
+        head status: :bad_request
+      end
+      head status: :ok
+    end
   end
 
+  private
+
   def pothole_params
-    params.require(:name).require(:longitude).require(:latitude)
+    params.permit(:name, :latitude, :longitude, :image, :format, :subdomain)
   end
 
 end

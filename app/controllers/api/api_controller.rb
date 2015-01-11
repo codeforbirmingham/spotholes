@@ -1,5 +1,5 @@
 class Api::ApiController < ApplicationController
-
+  skip_before_filter :verify_authenticity_token
   private
 
   def authenticate
@@ -8,7 +8,6 @@ class Api::ApiController < ApplicationController
 
     unless @user
       head status: :unauthorized
-      return false
     end
   end
 end

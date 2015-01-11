@@ -38,13 +38,13 @@ class Api::V1::PotholesController < Api::ApiController
   end
 
   def score
-    if pothole_params[:id].blank?
+    if pothole_params[:pothole_id].blank?
       head status: :bad_request
     else
-      pothole = Pothole.find(pothole_params[:id])
+      pothole = Pothole.find(pothole_params[:pothole_id])
       pothole.score = pothole.score + pothole_params[:score_delta].to_i
       pothole.save
-      update_user_score(pothole_params[:score_delta])
+      update_user_score(pothole.user_id, pothole_params[:score_delta])
 
       head status: :ok
     end
@@ -52,13 +52,14 @@ class Api::V1::PotholesController < Api::ApiController
 
   private
 
-  def update_user_score(score_delta)
-    @user.score = @user.score + score_delta.to_i
-    @user.save
+  def update_user_score(user_id, score_delta)
+    user = User.find(user_id)
+    user.score = user.score + score_delta.to_i
+    user.save
   end
 
   def pothole_params
-    params.permit(:id, :name, :latitude, :longitude, :image, :format, :subdomain, :user_id, :score_delta)
+    params.permit(:pothole_id, :id, :name, :latitude, :longitude, :image, :format, :subdomain, :user_id, :score_delta)
   end
 
 end

@@ -4,6 +4,7 @@ ActiveAdmin.register Pothole do
   filter :status, as: :select, collection: Pothole.statuses.keys
 
   index do |i|
+    i.selectable_column
     i.column :id
     i.column :name
     i.column :latitude

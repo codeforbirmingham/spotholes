@@ -44,7 +44,10 @@ class Api::V1::PotholesController < Api::ApiController
       pothole = Pothole.find(pothole_params[:pothole_id])
       pothole.score = pothole.score + pothole_params[:score_delta].to_i
       pothole.save
-      update_user_score(pothole.user_id, pothole_params[:score_delta])
+
+      if pothole.user.present?
+        update_user_score(pothole.user_id, pothole_params[:score_delta])
+      end
 
       head status: :ok
     end

@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 	before_create do |user|
 		user.api_key = User.generate_api_key
 	end
-	attr_accessible :name, :imei, :score
+	attr_accessible :id, :name, :imei, :score
 	validates :imei, :score, :name, presence: true
 	validates :imei, uniqueness: true
 

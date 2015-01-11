@@ -13,8 +13,11 @@ Rails.application.routes.draw do
             constraints: { subdomain: 'api' }, path: '/'  do
     scope module: :v1,
           constraints: ApiConstraints.new(version: 1, default: true) do
-      resources :potholes
-      resources :users
+      resources :potholes, only: [:index, :create, :show, :score] do
+        patch 'score', to: 'potholes#score'
+      end
+
+      resource :users, only: [:create, :show]
     end
   end
 

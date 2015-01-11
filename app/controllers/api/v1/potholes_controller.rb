@@ -1,8 +1,7 @@
 class Api::V1::PotholesController < Api::ApiController
   respond_to :json
 
-
-  # before_action :authenticate, only: [:create]
+  before_action :authenticate, only: [:create]
 
   def index
     if params[:status].blank?
@@ -23,17 +22,20 @@ class Api::V1::PotholesController < Api::ApiController
       @pothole = Pothole.new(name: pothole_params[:name], latitude: pothole_params[:latitude], longitude: pothole_params[:longitude], image: pothole_params[:image], status: Pothole.statuses[:unverified], score: 0, user_id: @user.id)
       @pothole.save
 
-      unless @pothole
+      byebug
+
+      if @pothole.valid?
+        head status: :ok
+      else
         head status: :bad_request
       end
-      head status: :ok
     end
   end
 
   private
 
   def pothole_params
-    params.permit(:name, :latitude, :longitude, :image, :format, :subdomain)
+    params.permit(:name, :latitude, :longitude, :image, :format, :subdomain, :user_id)
   end
 
 end

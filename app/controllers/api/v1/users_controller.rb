@@ -10,7 +10,7 @@ class Api::V1::UsersController < Api::ApiController
       if @user.blank?
         head status: :not_found
       else
-        respond_with @user, root: false
+        respond_with @user
       end
     end
   end
@@ -19,7 +19,7 @@ class Api::V1::UsersController < Api::ApiController
     if user_params[:name].blank? or user_params[:imei].blank?
       head status: :bad_request
     else
-      respond_with User.create(name: user_params[:name], imei: user_params[:imei], score: 0), root: false, location: nil
+      respond_with User.create(name: user_params[:name], imei: user_params[:imei], score: 0), location: nil
     end
   end
 

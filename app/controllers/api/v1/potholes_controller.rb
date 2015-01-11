@@ -5,14 +5,14 @@ class Api::V1::PotholesController < Api::ApiController
 
   def index
     if params[:status].blank?
-      respond_with Pothole.all, root: false
+      respond_with Pothole.all
     else
-      respond_with Pothole.where(status: Pothole.statuses[params[:status]]).all, root: false
+      respond_with Pothole.where(status: Pothole.statuses[params[:status]]).all
     end
   end
 
   def show
-    respond_with Pothole.find(params[:id]), root: false
+    respond_with Pothole.find(params[:id])
   end
 
   def create

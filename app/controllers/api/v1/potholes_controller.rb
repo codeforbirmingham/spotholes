@@ -1,18 +1,17 @@
 class Api::V1::PotholesController < Api::ApiController
   respond_to :json
-
   before_action :authenticate, only: [:create, :score]
 
   def index
     if params[:status].blank?
-      respond_with Pothole.all
+      respond_with Pothole.all, density: @density
     else
-      respond_with Pothole.where(status: Pothole.statuses[params[:status]]).all
+      respond_with Pothole.where(status: Pothole.statuses[params[:status]]).all, density: @density
     end
   end
 
   def show
-    respond_with Pothole.find(params[:id])
+    respond_with Pothole.find(params[:id]), density: @density
   end
 
   def create

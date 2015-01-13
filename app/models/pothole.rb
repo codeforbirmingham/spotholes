@@ -24,4 +24,5 @@ class Pothole < ActiveRecord::Base
   validates_attachment :image, content_type: {content_type: ["image/jpg", "image/jpeg", "image/png"]}, presence: true
 
   enum status: {unverified: 0, verified: 1, tagged: 2, fixed: 3}
+
 end

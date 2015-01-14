@@ -18,8 +18,7 @@ class Pothole < ActiveRecord::Base
                         xxhdpi: '-strip',
                         xxxhdpi: '-strip',
                     },
-                    path: 'photos/:style/:id.:extension',
-                    url: '/photos/:style/:id.:extension'
+                    path: 'photos/:style/:id.:extension'
 
   validates_attachment :image, content_type: {content_type: ["image/jpg", "image/jpeg", "image/png"]}, presence: true
 

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   namespace :api, defaults: { format: :json },
-            constraints: {subdomain: '/api(?:\.(staging))?/'}, path: '/' do
+            constraints: {subdomain: /api(?:\.(staging))?/}, path: '/' do
     scope module: :v1,
           constraints: ApiConstraints.new(version: 1, default: true) do
       resources :potholes, only: [:index, :create, :show, :score] do

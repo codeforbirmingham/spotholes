@@ -31,6 +31,9 @@ gem 'turbolinks'
 # Use paperclip for file uploads
 gem 'paperclip', '~> 4.2'
 
+# Use paper_trail for auditing
+gem 'paper_trail', '~> 3.0.6'
+
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 

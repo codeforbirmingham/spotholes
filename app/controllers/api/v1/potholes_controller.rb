@@ -4,9 +4,9 @@ class Api::V1::PotholesController < Api::ApiController
 
   def index
     if params[:status].blank?
-      respond_with Pothole.all, density: @density
+      render json: Pothole.all, density: @density
     else
-      respond_with Pothole.where(status: Pothole.statuses[params[:status]]).all, density: @density
+      render json: Pothole.where(status: Pothole.statuses[params[:status]]).all, density: @density
     end
   end
 

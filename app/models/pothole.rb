@@ -3,6 +3,8 @@ class Pothole < ActiveRecord::Base
   validates :name, :longitude, :latitude, :status, :score, presence: true
   belongs_to :user
 
+  has_paper_trail :meta => {status: :status}
+
   has_attached_file :image,
                     :styles => {
                         mdpi: '40x40#',

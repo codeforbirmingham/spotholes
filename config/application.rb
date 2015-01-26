@@ -19,5 +19,7 @@ module PotholesBackend
     end
 
     config.autoload_paths += %W(\#{config.root}/lib)
+
+    config.active_record.observers = :pothole_status_observer
   end
 end

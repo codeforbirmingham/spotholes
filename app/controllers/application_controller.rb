@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def user_for_paper_trail
     # Save the user responsible for the action
-    admin_user_signed_in? ? current_admin_user.name : 'admin'
+    admin_user_signed_in? ? current_admin_user.id : AdminUser.all.first.id
   end
 
 end

@@ -1,10 +1,7 @@
 class PotholeSerializer < ActiveModel::Serializer
-  attributes :id, :name, :longitude, :latitude, :status, :score, :image_url, :thumb_url, :logs
+  attributes :id, :name, :longitude, :latitude, :status, :score, :image_url
+  has_many :pothole_logs
   has_one :user, serializer: ShortUserSerializer
-
-  def logs
-    object.versions.all
-  end
 
   def image_url
     object.image.url

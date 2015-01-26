@@ -3,11 +3,18 @@ class Api::V1::PotholesController < Api::ApiController
   before_action :authenticate, only: [:create, :score]
 
   def index
-    if params[:status].blank?
-      render json: Pothole.all, density: @density
-    else
-      render json: Pothole.where(status: Pothole.statuses[params[:status]]).all, density: @density
+    attributes = Hash.new
+
+    attributes[:status] = Pothole.statuses[pothole_params[:status]] if pothole_params[:status].present?
+    if pothole_params[:lower_left_longitude].present? && pothole_params[:lower_left_latitude].present? &&
+        pothole_params[:upper_right_longitude].present? && pothole_params[:upper_right_latitude].present?
+
+      attributes[:latitude] = (pothole_params[:lower_left_latitude]..pothole_params[:upper_right_latitude])
+      attributes[:longitude] = (pothole_params[:lower_left_longitude]..pothole_params[:upper_right_longitude])
     end
+
+    render json: Pothole.where(attributes).all, density: @density, each_serializer: ShortPotholeSerializer
+
   end
 
   def show
@@ -61,7 +68,7 @@ class Api::V1::PotholesController < Api::ApiController
   end
 
   def pothole_params
-    params.permit(:pothole_id, :id, :name, :latitude, :longitude, :image, :format, :subdomain, :user_id, :score_delta)
+    params.permit(:pothole_id, :id, :name, :latitude, :longitude, :image, :subdomain, :user_id, :score_delta, :status, :lower_left_longitude, :lower_left_latitude, :upper_right_longitude, :upper_right_latitude)
   end
 
 end

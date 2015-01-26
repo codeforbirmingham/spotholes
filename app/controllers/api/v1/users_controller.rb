@@ -24,6 +24,6 @@ class Api::V1::UsersController < Api::ApiController
   end
 
   def user_params
-    params.permit(:name, :imei, :format, :subdomain)
+    params.permit(:name, :imei, :subdomain)
   end
 end

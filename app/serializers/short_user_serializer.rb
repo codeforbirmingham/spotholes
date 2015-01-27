@@ -1,3 +1,3 @@
 class ShortUserSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id, :name, :score
 end

@@ -1,6 +1,8 @@
 class Api::V1::UsersController < Api::ApiController
   respond_to :json
 
+  before_action :authenticate, only: [:report]
+
   def show
     if user_params[:imei].blank?
       head status: :bad_request
@@ -21,6 +23,10 @@ class Api::V1::UsersController < Api::ApiController
     else
       respond_with User.create(name: user_params[:name], imei: user_params[:imei], score: 0), location: nil
     end
+  end
+
+  def report
+    respond_with Pothole.where(user_id: @user.id).order(score: :desc), each_serializer: ShortPotholeSerializer
   end
 
   def user_params

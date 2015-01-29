@@ -14,9 +14,7 @@ class PotholeStatusObserver < ActiveRecord::Observer
 
   private
 
-  def create_pothole_log(pothole, user, admin_user, event)
-    if PaperTrail.enabled? && admin_user
-      PotholeLog.create(admin_user_id: admin_user, user_id: user, status: pothole.status, pothole_id: pothole.id)
-    end
+  def create_pothole_log(pothole, user, admin_user, event) 
+    PotholeLog.create(admin_user_id: admin_user, user_id: user, status: pothole.status, pothole_id: pothole.id)
   end
 end

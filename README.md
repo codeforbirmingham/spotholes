@@ -13,8 +13,15 @@ Setting up local environment
 ######You can install imagemagick via homebrew:
 
     $brew install imagemagick
+    
+######Install libwebp via homebrew:
 
-######And libwebp via macports:
+First update homebrew, then install libwebp:
+
+    $brew update
+    $brew install webp
+
+######or install libwebp via macports:
 
 First update macports, then install libwebp:
 

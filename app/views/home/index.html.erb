@@ -1,5 +1,24 @@
 <html>
-<body>
+<!--BEGIN POLYMER-->
+
+<!-- use fullbleed attribute to specify 
+     the body should fill the viewport -->
+     
+<body fullbleed vertical layout unresolved>
+  <core-header-panel flex>
+    <core-toolbar id="mainheader">
+      <paper-icon-button id="navicon" 
+        icon="arrow-back"></paper-icon-button>
+      <span flex>Title</span>
+      <paper-icon-button id="searchbutton" 
+        icon="search"></paper-icon-button>
+    </core-toolbar>
+    <p>HELLO!</p>
+    <p>Sample content.</p>
+  </core-header-panel>
+
+<!--END POLYMER-->
+
 <% @potholes.each do |pothole| %>
     <p><%= pothole.longitude %></p>
 <% end %>

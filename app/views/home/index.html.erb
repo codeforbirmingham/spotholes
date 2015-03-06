@@ -1,26 +1,28 @@
 <html>
-<!--BEGIN POLYMER-->
-
-<!-- use fullbleed attribute to specify 
-     the body should fill the viewport -->
-     
-<body fullbleed vertical layout unresolved>
-  <core-header-panel flex>
-    <core-toolbar id="mainheader">
-      <paper-icon-button id="navicon" 
-        icon="arrow-back"></paper-icon-button>
-      <span flex>Title</span>
-      <paper-icon-button id="searchbutton" 
-        icon="search"></paper-icon-button>
-    </core-toolbar>
-    <p>HELLO!</p>
-    <p>Sample content.</p>
-  </core-header-panel>
-
-<!--END POLYMER-->
-
-<% @potholes.each do |pothole| %>
-    <p><%= pothole.longitude %></p>
-<% end %>
+<body>
+<core-header-panel mode="cover">
+  <core-toolbar class="tall">
+    <core-menu-button>
+      <core-icon-button icon="menu"></core-icon-button>
+        <core-dropdown class="dropdown" layered>
+          <core-menu>
+              <core-item>Leaderboards</core-item>
+              <core-item>Settings</core-item>
+              <core-item>Help</core-item>
+          </core-menu>
+        </core-dropdown>
+    </core-menu-button>
+  </core-toolbar>
+    <div id="card">
+      <div id="map">
+        <iframe width="100%" height="600" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB-t8XMvm6aOqxvFsrI8fd9hqiMz5hkzRY&zoom=12&q=Vulcan,Birmingham+AL"></iframe>
+      </div>
+    </div>
+    <div id="botcard">
+      <% @potholes.each do |pothole| %>
+        <p><%= pothole.longitude %></p>
+      <% end %>
+    </div>
+</core-header-panel>
 </body>
 </html>

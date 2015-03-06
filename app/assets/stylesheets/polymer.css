@@ -1,0 +1,42 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+core-header-panel {
+	background: white;
+	height: 100%;
+}
+
+core-header-panel[mode=cover]::shadow #mainContainer {
+    left: 60px;
+}
+
+core-toolbar {
+    background-color: #428552;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+.content {
+    margin: 60px 60px 60px 0;
+}
+
+#card {
+	display: block;
+	margin: 30px 60px 60px 0px;
+	background-color: #fff;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+	border-radius: 2px;
+	overflow: hidden;
+}
+#botcard {
+	display: block;
+	margin: 5px 60px 60px 0px;
+	background-color: #fff;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+	border-radius: 2px;
+	overflow: hidden;
+}
+#map {
+	text-align: center;
+}

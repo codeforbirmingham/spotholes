@@ -5,7 +5,7 @@ html, body {
 }
 
 core-header-panel {
-	background: white;
+	background: #E8E8E1;
 	height: 100%;
 }
 
@@ -17,26 +17,42 @@ core-toolbar {
     background-color: #428552;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
+
+core-icon-button {
+	color: #05F283;
+}
+
 .content {
     margin: 60px 60px 60px 0;
 }
 
-#card {
+#mapcard {
 	display: block;
-	margin: 30px 60px 60px 0px;
+	margin: 30px 60px 30px 0px;
 	background-color: #fff;
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 	border-radius: 2px;
 	overflow: hidden;
 }
-#botcard {
+
+#toppotcard {
 	display: block;
-	margin: 5px 60px 60px 0px;
+	margin: 5px 60px 30px 0px;
 	background-color: #fff;
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 	border-radius: 2px;
 	overflow: hidden;
 }
+
+#leaderboardcard {
+	display: block;
+	margin: 5px 60px 30px 0px;
+	background-color: #fff;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+	border-radius: 2px;
+	overflow: hidden;
+}
+
 #map {
 	text-align: center;
 }

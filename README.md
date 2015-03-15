@@ -44,4 +44,12 @@ And then:
     $ cd ~/.pow
     $ ln -s /path/to/spotholes
 
+## Contributing
+
+1. Fork it ( https://github.com/CodeforBirmingham/spotholes/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
+
 That's it! Your application is now being served at: http://spotholes.dev

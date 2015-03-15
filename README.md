@@ -7,9 +7,10 @@ This repository is for our sPotholes administrative backend, API, and web fronte
 
 ## Setup
 
-This project expect you to at least have Ruby 2.1+ installed.
+This project expects you to at least have Ruby 2.1+ and Homebrew installed.
 
 After you clone the repo, navigate to spotholes directory and run:
+
     ./bin/setup
 
 This will walk you through the setup of the tools for the project for Mac OS X and Homebrew. Additional platform setup scripts/updates are welcome.
@@ -46,8 +47,8 @@ _Note: If either package is not available, you may need to update homebrew._
 
 First update macports, then install libwebp:
 
-    $sudo port selfupdate
-    $sudo port install webp
+    sudo port selfupdate
+    sudo port install webp
   
 ### Install node.js and bower
 
@@ -59,18 +60,18 @@ First update macports, then install libwebp:
 
 ### Set up the database (from within the sPotholes directory):
 
-    $rake db:create
-    $rake db:migrate
+    rake db:create
+    rake db:migrate
 
 ####We recommed using [POW] (http://pow.cx/) for the local server as it is pretty much configuration free.
 
 Just do:
 
-    $ curl get.pow.cx | sh
+    curl get.pow.cx | sh
     
 And then:
 
-    $ cd ~/.pow
-    $ ln -s /path/to/spotholes
+    cd ~/.pow
+    ln -s /path/to/spotholes
 
 That's it! Your application is now being served at: http://spotholes.dev

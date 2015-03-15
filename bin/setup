@@ -17,8 +17,58 @@ Dir.chdir APP_ROOT do
   #   system "cp config/database.yml.sample config/database.yml"
   # end
 
+  # Base packages to install via brew
+  brew_packages = [:postgres, :imagemagick, :webp]
+
+  # Check if node is installed
+  begin
+    node_installed = `node -v`
+  rescue Errno::ENOENT
+    puts "Node.js not installed. Will include with Homebrew packages."
+    brew_packages << :node
+  end
+
+  # Install Homebrew packages that are missing
+  puts "\n== Installing system dependencies =="
+  brew_packages.each do |package|
+    if /Not installed/ =~ `brew info #{package}`
+      system "brew install #{package}"
+    else
+      puts "#{package} already installed."
+    end
+  end
+
+  # Node packages
+  node_packages = [:bower]
+
+  # Install Node.js packages via npm globally
+  puts "\n== Installing Node package =="
+  npm_installed_packages = `npm -g list`
+  node_packages.each do |package|
+    if npm_installed_packages.match(package.to_s)
+      puts "#{package} already installed."
+    else
+      system "npm install -g #{package}"
+    end
+  end
+
+  puts "\n==Installing web components with Bower=="
+  system "bower install"
+
+  puts "\nStarting PostgreSQL for DB setup"
+
+  system "pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+
   puts "\n== Preparing database =="
-  system "bin/rake db:setup"
+  #system "bin/rake db:setup"
+  system "bin/rake db:create"
+  system "bin/rake db:migrate"
+
+  puts "Database Update Complete."
+
+  puts "Stopping PostgreSQL service"
+  system "pg_ctl -D /usr/local/var/postgres stop -s -m fast"
+
 
   puts "\n== Removing old logs and tempfiles =="
   system "rm -f log/*"

@@ -56,5 +56,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'shoulda-matchers'
+
+  gem 'dotenv-rails'
 end
 

@@ -13,7 +13,7 @@ class Api::V1::PotholesController < Api::ApiController
       attributes[:longitude] = (pothole_params[:lower_left_longitude]..pothole_params[:upper_right_longitude])
     end
 
-    render json: Pothole.where(attributes).all, density: @density, each_serializer: ShortPotholeSerializer
+    render json: Pothole.where(attributes).all, density: @density
 
   end
 
